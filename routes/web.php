@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,9 @@ Route::get('/signup', [SignupController::class, 'signup'])->name('signup');
 
 Route::post('/register', [SignupController::class, 'register'])->name('register');
 
+Route::get('/get-users', [UsersController::class, 'getUsers'])->name('getUsers');
+
+Route::get('/edituser/{id}', [UsersController::class, 'editUser'])->name('edituser');
+
+Route::get('/deleteUser/{id}', [UsersController::class, 'deleteUser'])->name('deleteUser');
 

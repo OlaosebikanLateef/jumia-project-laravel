@@ -16,7 +16,7 @@ class SignupController extends Controller
     }
 
     public function register(Request $request){
-        
+       
         $attribute = $request->validate([
             'firstname'=>'required', 
             'lastname'=> 'required',
@@ -26,11 +26,12 @@ class SignupController extends Controller
         ]); 
        
         if($request->password != $request->confirmpassword){
+        
             return back()->with("msg", "<div class='alert alert-danger'> <span> Password Incorrect </span> </div>");
         };
         
         $user = User::where('email', $request->email)->first();
-
+            //dd($user);
         if(isset($user)){
             return back()->with("msg", "<div class='alert alert-danger'> <span> Email Already Exist </span> </div>");
         };
@@ -46,7 +47,7 @@ class SignupController extends Controller
             'password'=>$password,
             'confirm_password'=>$confirmpassword
         ]);
-        return view('login');
+        return back()->with("msg", "<div class='alert alert-success'> <span> Sign Up Successfully </span> </div>");
 
     }
 }
